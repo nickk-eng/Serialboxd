@@ -1,0 +1,62 @@
+# Serialboxd
+
+![Serialboxd](https://via.placeholder.com/700x300/1a1625/ffffff?text=Serialboxd)
+
+Serialboxd é uma aplicação web inspirada no Letterboxd, projetada para entusiastas de séries de TV. A plataforma permite que os usuários descubram, pesquisem e vejam detalhes sobre uma vasta gama de séries, utilizando a API do [The Movie Database (TMDB)](https://www.themoviedb.org/).
+
+##  Funcionalidades Principais
+
+-   ** Página Inicial Dinâmica**: Exibe séries populares e lançamentos recentes.
+-   ** Catálogo de Séries**: Navegue por um catálogo extenso de séries com paginação.
+-   ** Busca Inteligente**: Pesquise séries por título.
+-   ** Página de Detalhes**: Veja informações completas sobre uma série, incluindo sinopse, elenco, temporadas e pôster.
+-   ** Autenticação de Usuários**: Sistema completo de cadastro, login e logout.
+-   ** Segurança**:
+    -   Senhas criptografadas com `bcrypt`.
+    -   Autenticação baseada em `JSON Web Tokens` (JWT) com Access Tokens e Refresh Tokens.
+    -   Rotação de Refresh Tokens para maior segurança da sessão.
+    -   Mecanismo de "Esqueci minha senha" com envio de e-mail.
+-   **👤 Perfil de Usuário**:
+    -   Visualização de dados do perfil.
+    -   Alteração de senha de forma segura.
+    -   Upload de avatar personalizado.
+-   **⚙️ Backend Robusto**: Construído com Node.js e Express, servindo como um proxy seguro para a API do TMDB e gerenciando toda a lógica de negócio.
+
+##  Tecnologias Utilizadas
+
+### Backend
+-   **Node.js**: Ambiente de execução JavaScript no servidor.
+-   **Express.js**: Framework para construção de APIs e rotas.
+-   **MySQL (mysql2)**: Banco de dados relacional para armazenar dados de usuários.
+-   **JSON Web Token (jsonwebtoken)**: Para geração e verificação de tokens de autenticação.
+-   **Bcrypt.js**: Para hashing seguro de senhas.
+-   **Nodemailer**: Para envio de e-mails (ex: recuperação de senha).
+-   **Dotenv**: Para gerenciar variáveis de ambiente.
+-   **Multer**: Middleware para upload de arquivos (avatares).
+-   **Winston**: Para um sistema de logging robusto.
+-   **Axios**: Para fazer requisições HTTP à API do TMDB.
+
+### Frontend
+-   **HTML5 / CSS3**: Estrutura e estilização das páginas.
+-   **JavaScript (Vanilla)**: Manipulação do DOM e lógica de interação com o backend.
+-   **Font Awesome**: Para ícones.
+
+##  Como Executar o Projeto
+
+Siga os passos abaixo para configurar e rodar o projeto em seu ambiente local.
+
+### 1. Pré-requisitos
+
+-   Node.js (versão 14 ou superior)
+-   MySQL
+-   Uma conta do Gmail com uma "Senha de App" gerada (se for usar o Gmail para envio de e-mails).
+-   Uma chave de API do The Movie Database (TMDB).
+
+### 2. Instalação
+
+Clone o repositório e instale as dependências:
+
+```bash
+git clone https://github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
+npm install
