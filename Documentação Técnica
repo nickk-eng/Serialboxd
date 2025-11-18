@@ -1,0 +1,292 @@
+DOCUMENTAÇÃO TÉCNICA DETALHADA
+
+
+
+
+
+
+
+SERIALBOXD: 
+SITE DE AVALIAÇÃO DE SÉRIES TELEVISIVAS
+
+
+
+
+
+
+
+
+THIAGO SANTANA GOMES 11231101489
+NICHOLAS REGINALDO FONSECA 11231101532
+SUMÁRIO
+ESCOPO .......................................................................................................2
+REQUISITOS FUNCIONAIS.....................................................................3
+REQUISITOS NÃO FUNCIONAIS...........................................................5
+REQUISITOS SEGURANÇA/LGPD.........................................................6
+CONFORMIDADE COM LGPD...............................................................8
+POLÍTICA DE PRIVACIDADE..............................................................10
+REFLEXÃO CRÍTICA.............................................................................14
+REFERÊNCIAS.....................................................................................15
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Escopo do Projeto
+O SerialBoxd é uma plataforma web dedicada à avaliação, catalogação e acompanhamento de séries de televisão. O objetivo é oferecer uma experiência semelhante ao Letterboxd, porém totalmente voltada ao universo de séries, permitindo que os usuários criem perfis, modifiquem-nos, registrem o que assistem, publiquem reviews, façam listas e acompanhem a atividade de outros usuários.
+O projeto engloba desenvolvimento backend e frontend, com foco especial em arquitetura segura, mecanismos avançados de autenticação e conformidade com a LGPD.
+Escopo incluído (MVP)
+Cadastro, login e confirmação de e-mail
+Sistema de autenticação seguro baseado
+Hashing de senha com Bycript
+Recuperação de senha via token temporário
+Criptografia de mensagens com AES
+Proteção de chaves simétricas com RSA
+Sistema de logs e auditoria de eventos críticos
+UI simples e responsiva
+Pagamentos, planos premium
+Fora do escopo
+Recomendação avançada baseada em aprendizado de máquina
+Aplicativos mobile nativos
+
+
+
+2. Requisitos Funcionais (RF)
+RF01 – Cadastro de Usuário
+Usuário cadastra e-mail e senha.
+Conferência de e-mail por link único.
+Senhas são hashadas com Bycript.
+RF02 – Login e Autenticação
+Usuário realiza login com e-mail + senha.
+Sistema retorna:
+Access Token
+Refresh Token
+RF03 – Rotação e Revogação de Refresh Tokens
+Tokens antigos são invalidados quando renovados (refresh rotation).
+Logout revoga o token atual.
+Admin pode revogar todos os tokens de um usuário.
+RF04 – Recuperação de Senha
+Usuário solicita recuperação.
+Recebe token seguro (UUID random) com validade curta (1h).
+RF05 – Alteração de Senha
+Requer senha atual se usuário estiver autenticado.
+Se alterada via recuperação, todas as sessões anteriores são revogadas.
+RF06 – Criptografia de Mensagens
+Cada mensagem é cifrada com AES-256-GCM.
+A chave AES é protegida com RSA (3072 bits).
+RF07 – Logs e Auditoria
+Registrar: tentativas de login, resets, rotas sensíveis, revogação de tokens.
+Logs estruturados em JSON.
+
+
+
+
+
+
+
+
+
+
+
+
+3. Requisitos Não Funcionais (RNF)
+RNF01 – Segurança
+Aderência às boas práticas OWASP.
+Hash seguro (Bycript).
+Cifras modernas (AES-GCM / RSA 3072).
+RNF02 – Desempenho
+Latência P95 < 500ms em rotas principais.
+RNF03 – Disponibilidade
+99.5% uptime mensal
+RNF04 – Escalabilidade
+Arquitetura stateless para a API.
+RNF05 – Usabilidade
+Interface responsiva e intuitiva.
+RNF06 – Observabilidade
+Logs estruturados + métricas básicas.
+
+
+
+
+4. Requisitos de Segurança (Detalhados)
+4.1 Hashing de Senhas (Bycript)
+Algoritmo: Bycript
+4.2 Tokens
+Access Token (JWT) com expiração de 15 minutos
+Refresh Token opaco com expiração de 30 dias
+Refresh armazenado no BD hashado (nunca em texto puro)
+4.3 Criptografia de Mensagens
+AES-256-GCM para cifrar conteúdo
+Cada mensagem → chave simétrica nova ou chave por conversa
+Chave AES cifrada com RSA
+4.4 Proteção das Chaves Privadas
+Armazenar chave RSA privada criptografada por passphrase
+Permissões restritas no servidor
+Futuro: migração para HSM/KMS
+4.5 Recuperação de Senha
+Token de 1 hora de validade
+Token único, não reutilizável
+Hash do token armazenado no BD
+4.6 Rotação de Tokens
+Refresh Token rotativo
+Antigos são revogados automaticamente
+4.7 Auditoria
+Logs incluem: user_id, IP, user-agent, timestamp UTC
+Sem dados sensíveis (senhas/tokens)
+
+
+
+
+
+
+
+
+
+
+
+
+
+5. Conformidade com a LGPD
+5.1 Dados coletados
+E-mail
+Nome de exibição
+Hash da senha
+Dados de uso: avaliações, listas
+Logs (metadados, não conteúdo sensível)
+5.2 Bases legais aplicáveis
+Execução de contrato
+Consentimento (para e-mails opcionais)
+Legítimo interesse (segurança, prevenção a fraudes)
+5.3 Direitos do titular
+Acesso
+Correção
+Exclusão
+Portabilidade
+Revogação de consentimento
+5.4 Encarregado (DPO)
+Canal de contato disponibilizado (e-mail).
+5.5 Segurança Aplicada
+Hashing seguro
+Tokens com expiração curta
+Cifras modernas
+Minimização de coleta
+5.6 Retenção e Exclusão
+Conta excluída → dados pessoais removidos
+Avaliações podem ser anonimizadas (se preferir)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6. Política de Privacidade (Serialboxd)
+1. Informações Coletadas
+Coletamos apenas dados mínimos necessários para a operação segura da plataforma.
+1.1. Dados de Cadastro
+Nome
+E-mail
+Senha (armazenada exclusivamente em formato criptografado usando bcrypt com salt gerado automaticamente)
+1.2. Dados de Autenticação
+Access Token (válido por 15 minutos)
+Refresh Token (válido por 30 dias)
+Identificadores técnicos para gerenciamento de sessões e rotação de tokens
+1.3. Dados de Uso
+Endereço IP
+Horário de acesso
+Logs de eventos críticos (ex.: tentativas de login, alteração de senha, revogação de tokens)
+O sistema não coleta dados sensíveis desnecessários para seu funcionamento.
+
+2. Finalidade do Tratamento
+Os dados são utilizados para:
+Identificação e autenticação do usuário
+Garantia de segurança das contas
+Recuperação de acesso via e-mail
+Controle de sessões e prevenção de fraudes
+Operações internas de estabilidade, métricas e auditoria
+Comunicação essencial com o usuário
+Nenhum dado é vendido, repassado ou compartilhado para fins de marketing.
+
+3. Armazenamento e Segurança
+A segurança é tratada como elemento essencial do sistema.
+3.1. Proteção das Senhas
+As senhas são processadas com bcrypt, com salt único por hash e fator de custo configurado para mitigar ataques de força bruta.
+3.2. Segurança dos Tokens
+Access Token: validade curta (15 minutos) para reduzir exposição em caso de vazamento.
+Refresh Token: validade longa (30 dias), armazenado em local protegido e rotacionado conforme boas práticas.
+Revogação automática em eventos suspeitos (ex.: login simultâneo em múltiplos dispositivos não autorizados).
+3.3. Criptografia
+Dados sensíveis em trânsito protegidos com TLS/HTTPS
+Mensagens sigilosas internas protegidas via AES
+Chave AES armazenada de forma segura utilizando RSA ou mecanismo equivalente de criptografia assimétrica
+
+4. Compartilhamento de Dados
+Os dados só são compartilhados quando:
+Exigido por lei ou ordem judicial
+Necessário para operação de serviços essenciais (ex.: envio de e-mails, hospedagem)
+Houver consentimento explícito do usuário
+Terceiros envolvidos seguem padrões de segurança e confidencialidade compatíveis com a LGPD.
+5. Direitos do Usuário
+O usuário pode solicitar, a qualquer momento:
+Acesso aos seus dados
+Correção de informações incorretas
+Exclusão definitiva da conta
+Revogação de consentimento
+Portabilidade
+Esclarecimento sobre uso dos dados
+Todas as solicitações serão atendidas conforme a LGPD.
+
+6. Retenção e Exclusão dos Dados
+Dados permanecem ativos enquanto o usuário mantiver sua conta.
+Após pedido de exclusão:
+Dados pessoais são removidos permanentemente
+Tokens são invalidados
+Logs estritamente necessários podem ser preservados pelo período legal mínimo para auditoria e segurança
+7. Alterações nesta Política
+Esta Política pode ser atualizada periodicamente. Mudanças relevantes serão comunicadas ao usuário.
+
+8. Contato
+Para esclarecimentos sobre privacidade, o usuário pode entrar em contato pelo canal oficial de suporte disponível no SerialBoxd.
+
+
+
+
+
+Reflexão Crítica
+O desenvolvimento do SerialBoxd evidenciou a complexidade de construir uma plataforma que equilibra experiência do usuário, desempenho e segurança. Embora o objetivo inicial fosse implementar um sistema simples de avaliação de séries, rapidamente se tornou evidente que qualquer aplicação com cadastro, autenticação e retenção de dados exige um nível elevado de responsabilidade técnica, especialmente diante das exigências da LGPD e das boas práticas modernas de proteção de informações.
+Ao longo do projeto, algumas decisões precisaram ser reavaliadas. A adoção do bcrypt para hashing de senhas, por exemplo, foi uma escolha influenciada por compatibilidade e maturidade da biblioteca, mas exigiu uma análise crítica sobre seus limites diante de soluções mais recentes, como Argon2. Isso reforçou a necessidade de equilibrar inovação com pragmatismo, considerando o contexto do sistema, a disponibilidade de recursos e o escopo do trabalho acadêmico.
+Outro ponto importante foi compreender que autenticação segura vai além de “gerar tokens”. Implementar access tokens de curta duração, refresh tokens rotacionáveis e mecanismos de revogação demandou estudo sobre cenários de ataque reais e sobre como uma falha mínima poderia comprometer todo o sistema. Esse processo aprofundou a consciência sobre ameaças, como roubo de sessão e interceptação de tokens, e mostrou que segurança não é um módulo isolado, mas um processo contínuo.
+Também se tornou claro que, embora a plataforma funcione e atenda ao escopo proposto, o sistema ainda possui limitações. Há espaço para melhorar o gerenciamento de logs, ampliar testes automatizados e evoluir mecanismos de monitoramento. Reconhecer essas lacunas não diminui a qualidade do projeto; pelo contrário, demonstra entendimento de que nenhum sistema está “pronto”, apenas em diferentes estágios de maturidade.
+Por fim, o trabalho reforçou a importância de documentar decisões técnicas — não só para justificar a implementação, mas para deixar visível o raciocínio por trás de cada escolha. O desenvolvimento do SerialBoxd foi, portanto, não apenas um exercício de implementação, mas um aprendizado sobre responsabilidade, segurança e clareza de propósito no desenvolvimento de sistemas.
+
+Referências
+LGPD e Privacidade
+BRASIL. Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de Dados Pessoais (LGPD). Disponível em: https://www.planalto.gov.br
+SOUZA, Carlos Affonso. Privacidade e Proteção de Dados Pessoais. Rio de Janeiro: FGV, 2020.
+Segurança e Boas Práticas
+CERT.br (Centro de Estudos, Resposta e Tratamento de Incidentes de Segurança):
+ https://www.cert.br
+Serpro – Artigos sobre segurança e criptografia:
+ https://www.serpro.gov.br
+Portal da LGPD do Governo Federal:
+ https://www.gov.br/anpd
+Desenvolvimento e Tecnologia (Brasil)
+Alura Artigos (autenticação, hashing, cookies, tokens):
+ https://www.alura.com.br
