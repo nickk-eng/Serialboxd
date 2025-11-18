@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil - Serialboxd</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        background-color: #1a1625;
+        color: #fff;
+      }
+      .profile-container {
+        max-width: 800px;
+        margin: 80px auto;
+        padding: 40px;
+        background-color: #161b22;
+        border-radius: 12px;
+        border: 1px solid #30363d;
+        text-align: center;
+      }
+      .profile-avatar-container {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 20px;
+        cursor: pointer;
+      }
+      .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 3px solid #8b5cf6;
+        object-fit: cover;
+      }
+      .avatar-edit-overlay {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        border-radius: 50%;
+        padding: 8px;
+        line-height: 1;
+        border: 2px solid white;
+      }
+      .profile-name {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .profile-email {
+        font-size: 1.1rem;
+        color: #9ab;
+        margin-bottom: 30px;
+      }
+      .profile-options a {
+        display: block;
+        color: #58a6ff;
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 10px;
+        border-radius: 6px;
+        transition: background-color 0.2s;
+      }
+      .profile-options a:hover {
+        background-color: #30363d;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="/" class="logo">
+            <i class="fas fa-film"></i>
+            serialboxd
+          </a>
+          <div class="header-center">
+            <nav>
+              <ul>
+                <li>
+                  <a href="/perfil.html" id="linkUsuario"
+                    ><span id="usuarioLogado"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="login.html" id="linkEntrar" class="login">Entrar</a>
+                </li>
+                <li id="liCadastrar">
+                  <a href="cadastro.html" id="linkCadastrar" class="signup"
+                    >Cadastrar</a
+                  >
+                </li>
+                <li><a href="/catalog">Séries</a></li>
+                <li><a href="#">Listas</a></li>
+                <li id="liLogout" style="display: none">
+                  <a href="#" id="btnLogout">Logout</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Conteúdo do Perfil -->
+    <div class="profile-container">
+      <div class="profile-avatar-container" id="avatarContainer">
+        <img
+          src="https://via.placeholder.com/120/8b5cf6/ffffff?text=U"
+          alt="Avatar do Usuário"
+          class="profile-avatar"
+          id="profileAvatar"
+        />
+        <div class="avatar-edit-overlay">
+          <i class="fas fa-camera"></i>
+        </div>
+        <input type="file" id="avatarUpload" accept="image/*" hidden />
+      </div>
+      <h1 class="profile-name" id="profileName">Nome do Usuário</h1>
+      <p class="profile-email" id="profileEmail">email@exemplo.com</p>
+      <div class="profile-options">
+        <a href="/change-password.html">Trocar de senha</a>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

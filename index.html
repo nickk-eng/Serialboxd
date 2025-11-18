@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Serialboxd - Sua plataforma para avaliar séries</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/images/favicon.ico" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="#" class="logo">
+            <i class="fas fa-film"></i>
+            serialboxd
+          </a>
+
+          <div class="header-center">
+            <nav>
+              <ul>
+                <li
+                  id="liUsuario"
+                  style="display: flex; align-items: center; gap: 8px"
+                >
+                  <img
+                    id="userAvatar"
+                    src=""
+                    alt="avatar"
+                    class="header-avatar"
+                  />
+                  <a id="linkUsuario" href="#"
+                    ><span id="usuarioLogado"></span
+                  ></a>
+                </li>
+                <li>
+                  <a href="login.html" id="linkEntrar" class="login">Entrar</a>
+                </li>
+                <li id="liCadastrar">
+                  <a href="cadastro.html" id="linkCadastrar" class="signup"
+                    >Cadastrar</a
+                  >
+                </li>
+                <li><a href="/catalog">Séries</a></li>
+                <li><a href="#">Listas</a></li>
+                <li id="liLogout" style="display: none">
+                  <a href="#" id="btnLogout">Logout</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="header-right">
+            <div class="header-search">
+              <input type="text" placeholder="Buscar séries..." />
+              <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section com Breaking Bad -->
+    <section class="hero-landing">
+      <div class="series-title-vertical">
+        <a href="#" class="series-link"
+          >Breaking Bad<br /><span class="series-year">(2008)</span></a
+        >
+      </div>
+      <div class="hero-content">
+        <!-- Conteúdo centralizado -->
+        <div class="hero-text">
+          <p class="hero-quote-large">"Say My Name."</p>
+          <p class="hero-subtitle">
+            Acompanhe as séries que você assistiu.<br />Salve aquelas que quer
+            ver.<br />Conte aos seus amigos o que é bom.
+          </p>
+          <button
+            id="btnCadastreSe"
+            class="cta-button"
+            onclick="window.location.href='cadastro.html'"
+          >
+            Cadastre-se
+          </button>
+          <p class="app-availability">
+            A Rede social para os que amam séries. <br />Disponível
+            <i class="fab fa-apple"></i> <i class="fab fa-android"></i> em
+            breve.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Séries e Filmes Recentes -->
+    <section class="recent-section">
+      <div class="container">
+        <h2 class="section-title">
+          <i class="fas fa-tv"></i>
+          Séries em Destaque
+        </h2>
+        <div class="recent-grid" id="recentGrid">
+          <!-- As capas serão carregadas dinamicamente via JavaScript -->
+          <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            Carregando séries...
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recursos do Site -->
+    <section class="features-section">
+      <div class="container">
+        <h2 class="section-title">
+          <i class="fas fa-info-circle"></i>
+          O que o Serialboxd Oferece
+        </h2>
+        <div class="features-grid">
+          <div class="feature-box">
+            <i class="fas fa-search"></i>
+            <h3>Descubra Séries</h3>
+          </div>
+          <div class="feature-box">
+            <i class="fas fa-star"></i>
+            <h3>Avalie e Comente</h3>
+          </div>
+          <div class="feature-box">
+            <i class="fas fa-users"></i>
+            <h3>Compartilhe com Amigos</h3>
+          </div>
+          <div class="feature-box">
+            <i class="fas fa-list"></i>
+            <h3>Crie Listas</h3>
+          </div>
+          <div class="feature-box">
+            <i class="fas fa-bell"></i>
+            <h3>Receba Notificações</h3>
+          </div>
+          <div class="feature-box">
+            <i class="fas fa-chart-line"></i>
+            <h3>Acompanhe Estatísticas</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Atores Famosos -->
+    <section class="actors-section">
+      <div class="container">
+        <h2 class="section-title">
+          <i class="fas fa-users"></i>
+          Atores Famosos
+        </h2>
+        <div class="actors-grid" id="actorsGrid">
+          <!-- Os atores serão carregados dinamicamente via JavaScript -->
+          <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            Carregando atores...
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>Serialboxd</h3>
+            <p>
+              Sua plataforma para descobrir, avaliar e compartilhar séries com
+              outros fãs.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h3>Links Rápidos</h3>
+            <ul>
+              <li><a href="#">Séries em Alta</a></li>
+              <li><a href="#">Próximos Lançamentos</a></li>
+              <li><a href="#">Séries Finalizadas</a></li>
+              <li><a href="#">Ranking de Séries</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Suporte</h3>
+            <ul>
+              <li><a href="#">Central de Ajuda</a></li>
+              <li><a href="#">Política de Privacidade</a></li>
+              <li><a href="#">Termos de Uso</a></li>
+              <li><a href="#">Contato</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="copyright">
+          <p>&copy; 2023 Serialboxd. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

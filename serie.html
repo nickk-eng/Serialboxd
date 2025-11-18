@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes da Série - Serialboxd</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .serie-hero {
+        background-size: cover;
+        background-position: center center;
+        padding: 40px 0;
+        position: relative;
+      }
+      .serie-hero-content {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+      }
+      .poster-wrapper {
+        flex-shrink: 0;
+        width: 300px;
+      }
+      .poster-wrapper img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      }
+      .serie-details {
+        color: #fff;
+      }
+      .serie-details h1 {
+        font-size: 2.8rem;
+        margin: 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+      .serie-details .subtitle {
+        font-size: 1.1rem;
+        color: #ccc;
+        margin-top: 5px;
+      }
+      .serie-details .overview h3 {
+        margin-top: 20px;
+        font-size: 1.5rem;
+      }
+      .serie-details .overview p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        max-width: 800px;
+      }
+      .cast-section {
+        padding: 40px 0;
+      }
+      .cast-grid {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        padding-bottom: 20px;
+      }
+      .cast-card {
+        background: #161b22;
+        border-radius: 8px;
+        width: 150px;
+        flex-shrink: 0;
+        text-align: center;
+      }
+      .cast-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+      .cast-card .cast-name {
+        font-weight: bold;
+        padding: 8px 5px 0;
+      }
+      .cast-card .cast-character {
+        font-size: 0.9em;
+        color: #aaa;
+        padding: 0 5px 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header (reutilize o header do seu site) -->
+    <header>
+      <!-- Cole o código do seu header aqui -->
+    </header>
+
+    <div id="serieHero" class="serie-hero">
+      <div class="container">
+        <div class="serie-hero-content">
+          <div class="poster-wrapper">
+            <img id="posterImg" src="" alt="Pôster da Série" />
+          </div>
+          <div class="serie-details">
+            <h1 id="serieTitle">Carregando...</h1>
+            <p id="serieSub" class="subtitle"></p>
+            <div class="overview">
+              <h3 id="overviewTitle">Sinopse</h3>
+              <p id="serieOverview"></p>
+            </div>
+            <!-- Outros detalhes podem ser adicionados aqui -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main class="main-content">
+      <section class="cast-section">
+        <div class="container">
+          <h2 class="section-title">Elenco Principal</h2>
+          <div id="castGrid" class="cast-grid">
+            <!-- Cards do elenco serão inseridos aqui -->
+          </div>
+        </div>
+      </section>
+
+      <section id="seasonsSection" class="recent-section">
+        <div class="container">
+          <h2 class="section-title">Temporadas</h2>
+          <div id="seasonsGrid" class="recent-grid">
+            <!-- Cards das temporadas serão inseridos aqui -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="serie.js"></script>
+  </body>
+</html>

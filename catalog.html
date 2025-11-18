@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo - Serialboxd</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/images/favicon.ico" />
+    <script src="/js/gtag-stub.js"></script>
+  </head>
+  <body>
+    <!-- header (mesma estrutura do index) -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="/" class="logo">
+            <i class="fas fa-film"></i>
+            serialboxd
+          </a>
+
+          <div class="header-center">
+            <nav>
+              <ul>
+                <li
+                  id="liUsuario"
+                  style="display: flex; align-items: center; gap: 8px"
+                >
+                  <img
+                    id="userAvatar"
+                    src=""
+                    alt="avatar"
+                    class="header-avatar"
+                  />
+                  <a
+                    id="linkUsuario"
+                    href="#"
+                    style="color: inherit; text-decoration: none"
+                  >
+                    <span id="usuarioLogado"></span>
+                  </a>
+                </li>
+                <li><a href="login.html" id="linkEntrar">Entrar</a></li>
+                <li id="liCadastrar">
+                  <a href="cadastro.html">Cadastrar</a>
+                </li>
+                <li><a href="catalog.html">Séries</a></li>
+                <li id="liLogout" style="display: none">
+                  <a href="#" id="btnLogout">Logout</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="header-right">
+            <div class="header-search">
+              <input
+                id="catalogSearch"
+                type="text"
+                placeholder="Buscar séries..."
+              />
+              <button id="catalogSearchBtn" type="button">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="recent-section">
+        <div class="container">
+          <h2 class="section-title">
+            <i class="fas fa-tv"></i> Catálogo de Séries
+          </h2>
+
+          <!-- área do catálogo -->
+          <div
+            style="
+              margin-top: 18px;
+              display: flex;
+              justify-content: flex-end;
+              gap: 12px;
+              align-items: center;
+            "
+          ></div>
+
+          <div class="recent-grid" id="catalogGrid" style="margin-top: 16px">
+            <div class="loading-spinner">
+              <i class="fas fa-spinner fa-spin"></i> Carregando catálogo...
+            </div>
+          </div>
+
+          <!-- Botão "Mostrar mais" centralizado -->
+          <div style="text-align: center; margin-top: 30px">
+            <button id="loadMoreBtn" class="cta-button" style="display: none">
+              Mostrar mais
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer><!-- ...reuse existing footer from index if desired... --></footer>
+
+    <script src="script.js"></script>
+    <script src="catalog.js"></script>
+  </body>
+</html>

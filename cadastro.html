@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cadastro - Serialboxd</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/images/favicon.ico" />
+    <style>
+      *,
+      *:before,
+      *:after {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #080710;
+      }
+      .background {
+        width: 430px;
+        height: 520px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+      }
+      .background .shape {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        border-radius: 50%;
+      }
+      .shape:first-child {
+        background: linear-gradient(#1845ad, #23a2f6);
+        left: -80px;
+        top: -80px;
+      }
+      .shape:last-child {
+        background: linear-gradient(to right, #ff512f, #f09819);
+        right: -30px;
+        bottom: -80px;
+      }
+      .glass-form {
+        height: auto;
+        min-height: 420px;
+        width: 400px;
+        background-color: rgba(255, 255, 255, 0.13);
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+        padding: 32px 35px 24px 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .glass-form h3 {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 42px;
+        text-align: center;
+        margin-bottom: 12px;
+      }
+      label {
+        display: block;
+        margin-top: -5px; /* ainda menor */
+        margin-bottom: 0; /* sem espaço extra */
+        font-size: 15px;
+        font-weight: 500;
+        width: 100%;
+        text-align: left;
+      }
+      input {
+        display: block;
+        height: 44px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.09);
+        border-radius: 6px;
+        padding: 0 12px;
+        margin-bottom: 15px; /* Adiciona espaço abaixo do campo */
+        font-size: 15px;
+        font-weight: 400;
+        border: none;
+        outline: none;
+        box-sizing: border-box;
+      }
+      ::placeholder {
+        color: #e5e5e5;
+      }
+      button[type="submit"] {
+        margin-top: 18px;
+        margin-bottom: 10px;
+        width: 100%;
+        background-color: #ffffff;
+        color: #080710;
+        padding: 13px 0;
+        font-size: 17px;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        border: none;
+        transition: background 0.2s;
+      }
+      .social {
+        margin-top: 18px;
+        display: flex;
+        gap: 16px;
+        width: 100%;
+        justify-content: center;
+      }
+      .social-btn {
+        flex: 1;
+        background-color: rgba(255, 255, 255, 0.18);
+        color: #eaf0fb;
+        border-radius: 6px;
+        padding: 10px 0;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+        transition: background 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .social-btn:hover {
+        background-color: rgba(255, 255, 255, 0.32);
+        color: #fff;
+      }
+      .social-btn i {
+        margin-right: 4px;
+        font-size: 18px;
+      }
+      .glass-form .error-message {
+        color: #ff4444;
+        font-size: 0.95rem;
+        margin-top: 4px;
+        margin-bottom: 0;
+        text-align: center;
+        min-height: 18px;
+        display: block;
+        width: 100%;
+      }
+      .glass-form .link-login {
+        margin-top: 10px;
+        text-align: center;
+        color: #e5e5e5;
+        font-size: 15px;
+        width: 100%;
+      }
+      .glass-form .link-login a {
+        color: #23a2f6;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .glass-form .link-login a:hover {
+        text-decoration: underline;
+        color: #ff512f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background">
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+    <form id="formCadastro" class="glass-form">
+      <h3>Crie sua conta</h3>
+      <label for="nome">Nome de usuário</label>
+      <input
+        type="text"
+        name="nome"
+        id="nome"
+        placeholder="Seu nome de usuário"
+        required
+      />
+      <span id="erroNome" class="error-message"></span>
+
+      <label for="email">E-mail</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Seu e-mail"
+        required
+      />
+      <span id="erroEmail" class="error-message"></span>
+
+      <label for="senha">Senha</label>
+      <input
+        type="password"
+        name="senha"
+        id="senha"
+        placeholder="Sua senha"
+        required
+      />
+
+      <button type="submit">Cadastrar</button>
+      <p id="mensagemErro" class="error-message"></p>
+      <div class="link-login">
+        Já tem uma conta? <a href="login.html">Entrar</a>
+      </div>
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>
